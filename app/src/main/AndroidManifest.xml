@@ -11,7 +11,7 @@
         android:theme="@style/Theme.McF">
 
         <activity
-            android:name=".Loggin"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,22 +21,14 @@
 
         </activity>
 
-        <!--<activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".MarcarPedido"></activity>
+        <activity android:name=".Loggin"></activity>
 
-        </activity>-->
-
-        <activity android:name=".MainActivity"></activity>
+        <!--<activity android:name=".MainActivity"></activity>-->
 
         <activity android:name=".mostrarClientes"></activity>
 
-        <activity android:name=".MarcarPedido"></activity>
 
         <activity android:name=".OpcionesAdmin"></activity>
 

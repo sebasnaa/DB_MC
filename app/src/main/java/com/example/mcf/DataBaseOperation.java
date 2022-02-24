@@ -8,14 +8,20 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
 
+import java.util.Date;
 import java.util.LinkedList;
 
 public class DataBaseOperation extends SQLiteOpenHelper {
 
     public static  final String TABLA_CLIENTES = "TABLA_CLIENTES";
+    public static  final String TABLA_PEDIDOS = "TABLA_PEDIDOS";
     public static final String COLUMNA_NOMBRE_CLIENTE = "NOMBRE_CLIENTE";
     public static final String COLUMNA_DIRECCION_CLIENTE = "DIRECCION_CLIENTE";
     public static final String COLUMNA_TELEFONO_CLIENTE = "TELEFONO_CLIENTE";
+    public static final String COLUMNA_TIPO_PEDIDO = "TIPO_PEDIDO";
+    public static final String COLUMNA_PRECIO_PEDIDO = "PRECIO_PEDIDO";
+    public static final String COLUMNA_FECHA_PEDIDO = "FECHA_PEDIDO";
+    public static final String COLUMNA_METODO_PAGO = "METODO_PAGO";
 
     public DataBaseOperation(@Nullable Context context) {
         super(context, "clientes.db", null, 2);
@@ -26,13 +32,26 @@ public class DataBaseOperation extends SQLiteOpenHelper {
         String createTableStatement = "CREATE TABLE " + TABLA_CLIENTES + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMNA_NOMBRE_CLIENTE + " TEXT, " + COLUMNA_DIRECCION_CLIENTE + " TEXT, " + COLUMNA_TELEFONO_CLIENTE + " INT)";
 
+
+
+        String createTablePedidos = "CREATE TABLE " + TABLA_PEDIDOS + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                COLUMNA_TELEFONO_CLIENTE + " INT)";
+
+       /* String createTablePedidos = "CREATE TABLE " + TABLA_PEDIDOS + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                COLUMNA_TELEFONO_CLIENTE + " INT,"  + COLUMNA_TIPO_PEDIDO + "TEXT, " + COLUMNA_PRECIO_PEDIDO + "REAL ," + COLUMNA_METODO_PAGO + "TEXT ," +
+                COLUMNA_FECHA_PEDIDO + " DEFAULT CURRENT_TIMESTAMP)";*/
+
+
+
         db.execSQL(createTableStatement);
+        db.execSQL(createTablePedidos);
     }
 
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //onCreate(db);
+
     }
 
 
@@ -61,6 +80,24 @@ public class DataBaseOperation extends SQLiteOpenHelper {
             return false;
         }
 
+    }
+
+    public boolean agregarPedido(ModeloPedido modeloPedido){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues contenido = new ContentValues();
+
+
+        contenido.put(COLUMNA_TELEFONO_CLIENTE,modeloPedido.getTelefono());
+        /*contenido.put(COLUMNA_TIPO_PEDIDO,modeloPedido.getTipo());
+        contenido.put(COLUMNA_PRECIO_PEDIDO,modeloPedido.getPrecio());
+        contenido.put(COLUMNA_METODO_PAGO,modeloPedido.getMetodoPago());*/
+
+        long insert = db.insert(TABLA_PEDIDOS, null, contenido);
+        if(insert == -1){
+            return false;
+        }else{
+            return true;
+        }
     }
 
 
@@ -101,6 +138,31 @@ public class DataBaseOperation extends SQLiteOpenHelper {
             }
         }
     return listaRes;
+    }
+
+    public LinkedList<ModeloPedido> getPedidos(){
+        LinkedList<ModeloPedido> listaRes = new LinkedList<>();
+
+        String query = "SELECT * FROM TABLA_PEDIDOS";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+
+        if(cursor.moveToFirst()){
+            while(!cursor.isAfterLast()){
+
+                int telefono = cursor.getInt(0);
+                String tipo = cursor.getString(1);
+                double precio = cursor.getDouble(2);
+                String fecha = cursor.getString(3);
+                String metodoPago = cursor.getString(4);
+                ModeloPedido aux = new ModeloPedido(telefono,tipo,precio,metodoPago);
+                aux.setFecha(fecha);
+
+                listaRes.add(aux);
+                cursor.moveToNext();
+            }
+        }
+        return listaRes;
     }
 
     public ModeloCliente getCliente(String tel){

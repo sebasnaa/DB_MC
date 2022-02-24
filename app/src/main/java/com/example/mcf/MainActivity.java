@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         btn_marcar_pedido = findViewById(R.id.btn_marcar_pedido);
-        btn_mostrar_clientes = findViewById(R.id.btn_mostrar_clientes);
+
         btn_agregar = findViewById(R.id.btn_agregar);
         btn_buscar = findViewById(R.id.btn_buscar);
         btn_eliminar = findViewById(R.id.btn_eliminar);
@@ -50,19 +50,12 @@ public class MainActivity extends AppCompatActivity {
         if(!superUserStatus){
             Toast.makeText(getApplicationContext(), "Junior", Toast.LENGTH_SHORT).show();
 
-            btn_mostrar_clientes.setVisibility(View.GONE);
             btn_eliminar.setVisibility(View.GONE);
             btn_print.setVisibility(View.GONE);
         }
 
 
-        btn_mostrar_clientes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, mostrarClientes.class);
-                startActivity(intent);
-            }
-        });
+
 
         btn_marcar_pedido.setOnClickListener(new View.OnClickListener() {
             @Override
