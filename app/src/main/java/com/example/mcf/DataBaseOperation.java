@@ -24,22 +24,18 @@ public class DataBaseOperation extends SQLiteOpenHelper {
     public static final String COLUMNA_METODO_PAGO = "METODO_PAGO";
 
     public DataBaseOperation(@Nullable Context context) {
-        super(context, "clientes.db", null, 2);
+        super(context, "clientes.db", null, 3);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTableStatement = "CREATE TABLE " + TABLA_CLIENTES + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMNA_NOMBRE_CLIENTE + " TEXT, " + COLUMNA_DIRECCION_CLIENTE + " TEXT, " + COLUMNA_TELEFONO_CLIENTE + " INT)";
-
-
+        
 
         String createTablePedidos = "CREATE TABLE " + TABLA_PEDIDOS + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                COLUMNA_TELEFONO_CLIENTE + " INT)";
-
-       /* String createTablePedidos = "CREATE TABLE " + TABLA_PEDIDOS + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                COLUMNA_TELEFONO_CLIENTE + " INT,"  + COLUMNA_TIPO_PEDIDO + "TEXT, " + COLUMNA_PRECIO_PEDIDO + "REAL ," + COLUMNA_METODO_PAGO + "TEXT ," +
-                COLUMNA_FECHA_PEDIDO + " DEFAULT CURRENT_TIMESTAMP)";*/
+                COLUMNA_TELEFONO_CLIENTE + " INT, "  + COLUMNA_TIPO_PEDIDO + " TEXT, " + COLUMNA_PRECIO_PEDIDO + " REAL ," + COLUMNA_METODO_PAGO + " TEXT ," +
+                COLUMNA_FECHA_PEDIDO + " DEFAULT CURRENT_TIMESTAMP)";
 
 
 
@@ -50,7 +46,7 @@ public class DataBaseOperation extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //onCreate(db);
+/*        onCreate(db);*/
 
     }
 
@@ -88,9 +84,9 @@ public class DataBaseOperation extends SQLiteOpenHelper {
 
 
         contenido.put(COLUMNA_TELEFONO_CLIENTE,modeloPedido.getTelefono());
-        /*contenido.put(COLUMNA_TIPO_PEDIDO,modeloPedido.getTipo());
+        contenido.put(COLUMNA_TIPO_PEDIDO,modeloPedido.getTipo());
         contenido.put(COLUMNA_PRECIO_PEDIDO,modeloPedido.getPrecio());
-        contenido.put(COLUMNA_METODO_PAGO,modeloPedido.getMetodoPago());*/
+        contenido.put(COLUMNA_METODO_PAGO,modeloPedido.getMetodoPago());
 
         long insert = db.insert(TABLA_PEDIDOS, null, contenido);
         if(insert == -1){
