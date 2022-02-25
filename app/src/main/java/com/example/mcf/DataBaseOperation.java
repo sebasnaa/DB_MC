@@ -31,7 +31,7 @@ public class DataBaseOperation extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createTableStatement = "CREATE TABLE " + TABLA_CLIENTES + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMNA_NOMBRE_CLIENTE + " TEXT, " + COLUMNA_DIRECCION_CLIENTE + " TEXT, " + COLUMNA_TELEFONO_CLIENTE + " INT)";
-        
+
 
         String createTablePedidos = "CREATE TABLE " + TABLA_PEDIDOS + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMNA_TELEFONO_CLIENTE + " INT, "  + COLUMNA_TIPO_PEDIDO + " TEXT, " + COLUMNA_PRECIO_PEDIDO + " REAL ," + COLUMNA_METODO_PAGO + " TEXT ," +
@@ -146,12 +146,13 @@ public class DataBaseOperation extends SQLiteOpenHelper {
         if(cursor.moveToFirst()){
             while(!cursor.isAfterLast()){
 
-                int telefono = cursor.getInt(0);
-                String tipo = cursor.getString(1);
-                double precio = cursor.getDouble(2);
-                String fecha = cursor.getString(3);
+                int clienteId = cursor.getInt(0);
+                int telefono = cursor.getInt(1);
+                String tipo = cursor.getString(2);
+                double precio = cursor.getDouble(3);
                 String metodoPago = cursor.getString(4);
-                ModeloPedido aux = new ModeloPedido(telefono,tipo,precio,metodoPago);
+                String fecha = cursor.getString(5);
+                ModeloPedido aux = new ModeloPedido(clienteId,telefono,tipo,precio,metodoPago,fecha);
                 aux.setFecha(fecha);
 
                 listaRes.add(aux);

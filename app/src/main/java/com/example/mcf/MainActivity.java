@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
 
-    Button btn_agregar,btn_buscar,btn_eliminar,btn_print,btn_mostrar_clientes,btn_marcar_pedido;
+    Button btn_agregar,btn_buscar,btn_eliminar,btn_print,btn_mostrar_clientes,btn_marcar_pedido,btn_home_user,btn_home_admin;
     EditText et_nombre,et_direccion,et_telefono;
 
 
@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         btn_buscar = findViewById(R.id.btn_buscar);
         btn_eliminar = findViewById(R.id.btn_eliminar);
         btn_print = findViewById(R.id.btn_print);
+        btn_home_user = findViewById(R.id.btn_home_user);
+        btn_home_admin = findViewById(R.id.btn_home_admin);
         et_nombre = findViewById(R.id.NombreCliente);
         et_direccion = findViewById(R.id.DireccionCliente);
         et_telefono = findViewById(R.id.TelefonoCliente);
@@ -49,9 +51,11 @@ public class MainActivity extends AppCompatActivity {
 
         if(!superUserStatus){
             Toast.makeText(getApplicationContext(), "Junior", Toast.LENGTH_SHORT).show();
-
             btn_eliminar.setVisibility(View.GONE);
             btn_print.setVisibility(View.GONE);
+            btn_home_admin.setVisibility(View.GONE);
+        }else{
+            btn_home_user.setVisibility(View.GONE);
         }
 
 
@@ -69,6 +73,23 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btn_home_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, OpcionesUser.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_home_admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, OpcionesAdmin.class);
+                startActivity(intent);
+            }
+        });
+
 
         btn_agregar.setOnClickListener(new View.OnClickListener() {
 

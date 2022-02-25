@@ -109,6 +109,7 @@ public class mostrarClientes extends AppCompatActivity {
             t1v.setGravity(Gravity.CENTER);
             t1v.setPadding(0,0,25,0);
             tbrow.addView(t1v);
+
             TextView t2v = new TextView(this);
             t2v.setText(listaClientes.get(i).getNombre());
             t2v.setTextColor(colorLetra);
@@ -120,8 +121,8 @@ public class mostrarClientes extends AppCompatActivity {
             t3v.setTextColor(colorLetra);
             t3v.setGravity(Gravity.CENTER);
             t3v.setPadding(0,0,25,0);
-
             tbrow.addView(t3v);
+
             TextView t4v = new TextView(this);
             t4v.setText(listaClientes.get(i).getDireccion());
             t4v.setTextColor(colorLetra);

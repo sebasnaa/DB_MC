@@ -10,5 +10,11 @@
     <string name="login_form_password">Password</string>
     <string name="login_form_login">Acceder</string>
 
+    <string name="confirmacion_pedido">Confirmación Pedido</string>
+
+    <string name="confirmar">Confirmar</string>
+
+    <string name="cancelar">Cancelar</string>
+
 
 </resources>

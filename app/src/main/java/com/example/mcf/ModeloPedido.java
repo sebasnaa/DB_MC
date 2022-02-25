@@ -7,13 +7,16 @@ public class ModeloPedido {
     private double precio;
     private String metodoPago;
     private String fecha;
+    private int id;
 
-    public ModeloPedido(int telefono,String tipo,double precio,String metodoPago){
+    public ModeloPedido(int id,int telefono,String tipo,double precio,String metodoPago,String fecha){
 
         this.telefono = telefono;
         this.tipo = tipo;
         this.precio = precio;
         this.metodoPago = metodoPago;
+        this.id = id;
+        this.fecha = fecha;
     }
 
     public ModeloPedido(){
@@ -30,6 +33,14 @@ public class ModeloPedido {
                 ", fecha='" + fecha + '\'' +
                 ", metodoPago='" + metodoPago + '\'' +
                 '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getTelefono() {

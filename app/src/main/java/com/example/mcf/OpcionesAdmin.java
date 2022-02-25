@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class OpcionesAdmin extends AppCompatActivity {
 
-    Button btn_edicion,btn_mostra_clientes,btn_mostrar_pedidos;
+    Button btn_edicion,btn_mostra_clientes,btn_mostrar_pedidos,btn_cerrar_sesion;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class OpcionesAdmin extends AppCompatActivity {
         btn_edicion = findViewById(R.id.btn_edicion_opcion);
         btn_mostra_clientes = findViewById(R.id.btn_mostrar_clientes_opcion);
         btn_mostrar_pedidos = findViewById(R.id.btn_mostrar_pedidos_opcion);
-
+        btn_cerrar_sesion = findViewById(R.id.btn_cerrar_sesion);
 
         btn_edicion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +35,22 @@ public class OpcionesAdmin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OpcionesAdmin.this, mostrarClientes.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_mostrar_pedidos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OpcionesAdmin.this, MostrarPedidos.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_cerrar_sesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OpcionesAdmin.this, Loggin.class);
                 startActivity(intent);
             }
         });

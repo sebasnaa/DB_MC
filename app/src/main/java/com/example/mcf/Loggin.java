@@ -49,7 +49,7 @@ public class Loggin extends AppCompatActivity {
                     }else if(usernameEditText.getText().toString().trim().equals("j") && passwordEditText.getText().toString().trim().equals("j")){
                         Toast.makeText(getApplicationContext(), "Bunny logged", Toast.LENGTH_SHORT).show();
                         setSuperUserStatus(404);
-                        Intent intent = new Intent(Loggin.this, MainActivity.class);
+                        Intent intent = new Intent(Loggin.this, OpcionesUser.class);
                         intent.putExtra("superUserStatus",getSuperUserStatus());
                         startActivity(intent);
 
