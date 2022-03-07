@@ -1,5 +1,6 @@
 package com.example.mcf;
 
+import android.annotation.SuppressLint;
 import android.arch.lifecycle.ViewModelStoreOwner;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,16 +25,20 @@ import java.util.Locale;
 
 public class MarcarPedido extends AppCompatActivity {
 
+    private double descuentoGlovo;
+
 
 
     Button botonMain,btn_confirmar_pedido;
-    TextView et_nombre,et_direccion,et_telefono,et_cambio_calculado;
-    EditText et_importe_pedido,et_entrega_dinero,importeField,entregaField;
+    TextView et_nombre,et_direccion,et_telefono,et_cambio_calculado,descuentoField;
+    EditText et_importe_pedido,et_entrega_dinero,importeField,entregaField,et_descuento_aplicado;
     RadioButton r_btn_tarjeta,r_btn_efectivo;
-    Switch sw_glovo,sw_pagado;
+    Switch sw_glovo,sw_pagado,sw_descuento;
 
 
 
+
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +57,14 @@ public class MarcarPedido extends AppCompatActivity {
         //EditText
         et_importe_pedido = findViewById(R.id.et_importe_pedido);
         et_entrega_dinero = findViewById(R.id.et_entrega_dinero);
+        et_descuento_aplicado = findViewById(R.id.et_descuento_aplicado);
         importeField = findViewById(R.id.importeField);
         entregaField = findViewById(R.id.entregaField);
+        descuentoField = findViewById(R.id.descuentoField);
+
+        descuentoField.setVisibility(View.INVISIBLE);
+        et_descuento_aplicado.setVisibility(View.INVISIBLE);
+
         //RadioButton
         r_btn_tarjeta = findViewById(R.id.radio_btn_tarjeta);
         r_btn_efectivo = findViewById(R.id.radio_btn_efectivo);
@@ -61,20 +72,41 @@ public class MarcarPedido extends AppCompatActivity {
         //switch
         sw_glovo = findViewById(R.id.sw_glovo);
         sw_pagado = findViewById(R.id.sw_pagado);
+        sw_descuento = findViewById(R.id.sw_descuento);
         sw_pagado.setVisibility(View.INVISIBLE);
+        sw_descuento.setVisibility(View.INVISIBLE);
+
+
         setDatosPedidoCliente();
         et_cambio_calculado.setKeyListener(null);
         entregaField.setKeyListener(null);
         importeField.setKeyListener(null);
 
 
+        Intent intent = getIntent();
+        boolean superUser = intent.getBooleanExtra("superUserStatus",false);
 
         sw_glovo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     sw_pagado.setVisibility(View.VISIBLE);
+                    sw_descuento.setVisibility(View.VISIBLE);
                 }else{
                     sw_pagado.setVisibility(View.INVISIBLE);
+                    sw_descuento.setVisibility(View.INVISIBLE);
+
+                }
+            }
+        });
+
+        sw_descuento.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    descuentoField.setVisibility(View.VISIBLE);
+                    et_descuento_aplicado.setVisibility(View.VISIBLE);
+                }else{
+                    descuentoField.setVisibility(View.INVISIBLE);
+                    et_descuento_aplicado.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -84,8 +116,9 @@ public class MarcarPedido extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MarcarPedido.this,MainActivity.class);
-                startActivity(intent);
+                Intent intentMod = new Intent(MarcarPedido.this,MainActivity.class);
+                //intentMod.putExtra("superUserStatus",superUser);
+                startActivity(intentMod);
             }
         });
 
@@ -96,20 +129,15 @@ public class MarcarPedido extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                /*String telefono = et_telefono.getText().toString().trim();
-
-                ModeloPedido aux = new ModeloPedido();
-                aux.setTelefono(Integer.parseInt(telefono));
-                aux.setMetodoPago(getMetodoPago());
-                aux.setTipo(getTipoPedido());
-                aux.setPrecio(Double.parseDouble(et_importe_pedido.getText().toString()));*/
-
                 int tele = Integer.parseInt(et_telefono.getText().toString());
                 String tipo = getTipoPedido();
                 double importe = Double.parseDouble(et_importe_pedido.getText().toString());
-                //String metodoPago = getMetodoPago();
+                String metodoPago = getMetodoPago();
 
-                String metodoPago = getFormaPagoGLovo();
+
+                if(sw_pagado.isChecked()){
+                    metodoPago = "App";
+                }
 
                 ModeloPedido moPedido = new ModeloPedido(-1,tele,tipo,importe,metodoPago,"");
 
@@ -134,10 +162,20 @@ public class MarcarPedido extends AppCompatActivity {
 
                         DataBaseOperation dataBaseOperation = new DataBaseOperation(MarcarPedido.this);
                         boolean exitoso = dataBaseOperation.agregarPedido(moPedido);
-                        if(exitoso){
+                        boolean exitosoDescuento = true;
+                        if(sw_glovo.isChecked() && sw_descuento.isChecked() && et_descuento_aplicado.getText().toString().length() > 0){
+                            double importeDescuento = Double.parseDouble(et_descuento_aplicado.getText().toString());
+                            exitosoDescuento = dataBaseOperation.agregarDescuentoPedido(getMetodoPago(),importeDescuento);
+                        }
+
+
+                        if(exitoso && exitosoDescuento){
                             Toast.makeText(MarcarPedido.this, "Pedido Agregado",
                                     Toast.LENGTH_LONG).show();
+
                             Intent intent = new Intent(MarcarPedido.this,MainActivity.class);
+                            //intent.putExtra("superUserStatus",superUser);
+
                             startActivity(intent);
                         }else{
                             Toast.makeText(MarcarPedido.this, "Error,no agregado",
@@ -157,6 +195,7 @@ public class MarcarPedido extends AppCompatActivity {
 
         et_importe_pedido.addTextChangedListener(textWatcher);
         et_entrega_dinero.addTextChangedListener(textWatcher);
+        et_descuento_aplicado.addTextChangedListener(textWatcher);
         checkFieldsForEmptyValues();
 
     }
@@ -186,17 +225,6 @@ public class MarcarPedido extends AppCompatActivity {
 
     }
 
-    private String getFormaPagoGLovo(){
-
-        if(sw_pagado.isChecked()){
-            return "Tarjeta";
-        }
-
-        return getMetodoPago();
-
-
-
-    }
 
     private String getTipoPedido(){
         if(sw_glovo.isChecked()){
@@ -210,6 +238,10 @@ public class MarcarPedido extends AppCompatActivity {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
 
+            if(!sw_descuento.isChecked()){
+                descuentoGlovo = 0;
+
+            }
         }
 
         @Override
@@ -219,6 +251,7 @@ public class MarcarPedido extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable editable) {
+
         }
     };
 
@@ -228,8 +261,9 @@ public class MarcarPedido extends AppCompatActivity {
         if(et_importe_pedido.getText().toString().length() > 0 &&  et_entrega_dinero.getText().toString().length() > 0){
             Double precio = Double.parseDouble(et_importe_pedido.getText().toString());
             Double entregaDinero = Double.parseDouble(et_entrega_dinero.getText().toString());
-            if (precio > 0 && (precio <= entregaDinero)) {
-                double cambio = entregaDinero-precio;
+            setDescuento();
+            if (precio > 0 && (precio <= entregaDinero+descuentoGlovo)) {
+                double cambio = entregaDinero+descuentoGlovo-precio;
                 et_cambio_calculado.setText(""+cambio);
                 btn.setEnabled(true);
             } else {
@@ -240,6 +274,16 @@ public class MarcarPedido extends AppCompatActivity {
             btn.setEnabled(false);
         }
 
+    }
+
+
+    private void setDescuento(){
+
+        descuentoGlovo = 0;
+
+        if( et_descuento_aplicado.getVisibility() == View.VISIBLE && et_descuento_aplicado.getText().toString().length() > 0){
+            descuentoGlovo = Double.parseDouble(et_descuento_aplicado.getText().toString());
+        }
     }
 
 

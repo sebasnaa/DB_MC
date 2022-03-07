@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         superUserStatus = getUserStatus();
 
-
+        superUserStatus = Loggin.credencialesUsuario;
 
         btn_marcar_pedido = findViewById(R.id.btn_marcar_pedido);
 
@@ -50,11 +50,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         if(!superUserStatus){
-            Toast.makeText(getApplicationContext(), "Junior", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "Junior", Toast.LENGTH_SHORT).show();
             btn_eliminar.setVisibility(View.GONE);
             btn_print.setVisibility(View.GONE);
             btn_home_admin.setVisibility(View.GONE);
-        }else{
+        }
+
+        if(superUserStatus){
             btn_home_user.setVisibility(View.GONE);
         }
 
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("nombreCliente",et_nombre.getText().toString());
                 intent.putExtra("direccionCliente",et_direccion.getText().toString());
                 intent.putExtra("telefonoCliente",et_telefono.getText().toString());
-
+                //intent.putExtra("superUserStatus",superUserStatus);
 
                 startActivity(intent);
             }

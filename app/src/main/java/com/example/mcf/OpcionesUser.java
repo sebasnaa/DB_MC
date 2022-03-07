@@ -21,7 +21,7 @@ Button btn_edicion_user,btn_cerrar_sesion_user;
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OpcionesUser.this, MainActivity.class);
-                intent.putExtra("superUserStatus",Loggin.getSuperUserStatus());
+                //intent.putExtra("superUserStatus",Loggin.getSuperUserStatus());
                 startActivity(intent);
             }
         });
@@ -30,7 +30,7 @@ Button btn_edicion_user,btn_cerrar_sesion_user;
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OpcionesUser.this, Loggin.class);
-                intent.putExtra("superUserStatus",Loggin.getSuperUserStatus());
+                //intent.putExtra("superUserStatus",Loggin.getSuperUserStatus());
                 startActivity(intent);
             }
         });

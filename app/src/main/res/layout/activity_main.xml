@@ -68,10 +68,12 @@
         android:id="@+id/btn_buscar"
         android:layout_width="140dp"
         android:layout_height="70dp"
+        android:layout_marginStart="99dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="16dp"
         android:text="Buscar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_agregar"
         app:layout_constraintTop_toBottomOf="@+id/TelefonoCliente" />
 
     <Button
@@ -100,12 +102,13 @@
         android:id="@+id/btn_marcar_pedido"
         android:layout_width="140dp"
         android:layout_height="70dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:text="Marcar Pedido"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintEnd_toStartOf="@+id/btn_home_user"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TelefonoCliente" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_agregar" />
 
     <Button
         android:id="@+id/btn_home_user"
@@ -122,11 +125,13 @@
         android:id="@+id/btn_home_admin"
         android:layout_width="140dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="132dp"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
         android:text="Inicio"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.94"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/btn_marcar_pedido"
+        app:layout_constraintTop_toBottomOf="@+id/btn_buscar" />
 
 </android.support.constraint.ConstraintLayout>
