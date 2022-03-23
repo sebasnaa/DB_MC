@@ -1,14 +1,24 @@
 package com.example.mcf;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Path;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.telephony.TelephonyManager;
 
 public class Loggin extends AppCompatActivity {
 
@@ -20,7 +30,6 @@ public class Loggin extends AppCompatActivity {
     private Button loginButton;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +39,9 @@ public class Loggin extends AppCompatActivity {
         passwordEditText = findViewById(R.id.activity_main_passwordEditText);
         loginButton = findViewById(R.id.activity_main_loginButton);
 
+    String id = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
 
+// sebas 6492b67f86e8ef3a
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +54,9 @@ public class Loggin extends AppCompatActivity {
                     //mcadmin    admin2022     a a
                     //mcjunior   2022
 
-                    if(usernameEditText.getText().toString().trim().equals("a") && passwordEditText.getText().toString().trim().equals("a") ){
+    //usernameEditText.setText(id);/
+
+                    if(usernameEditText.getText().toString().trim().equals("a") && passwordEditText.getText().toString().trim().equals("a")){
 
                         setSuperUserStatus(1);
 
@@ -93,5 +106,11 @@ public class Loggin extends AppCompatActivity {
     private void setSuperUserStatus(int status){
         Loggin.superUserStatus = status;
     }
+
+
+
+
+
+
 
 }

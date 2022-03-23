@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                             String mensaje ="Cliente existente";
                             if(exitoso){
                                 mensaje = "Cliente guardado";
-                                limpiar();
+                                //limpiar();
                             }
                             Toast.makeText(MainActivity.this,mensaje ,Toast.LENGTH_SHORT).show();
                         }
@@ -178,10 +178,10 @@ public class MainActivity extends AppCompatActivity {
         btn_print.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Has pulsado print" ,Toast.LENGTH_SHORT).show();
+                /*Toast.makeText(MainActivity.this,"Has pulsado print" ,Toast.LENGTH_SHORT).show();
 
                 DataBaseOperation dataBaseOperation = new DataBaseOperation(MainActivity.this);
-                dataBaseOperation.eliminarTabla();
+                dataBaseOperation.eliminarTabla();*/
             }
 
 

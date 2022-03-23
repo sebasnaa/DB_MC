@@ -4,15 +4,20 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 
@@ -41,10 +46,13 @@ public class Balances extends AppCompatActivity {
         textView2 = findViewById(R.id.textView2);
 
 
+        btn_completo_balance.setEnabled(false);
+
         btn_completo_balance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 init();
+
             }
         });
 
@@ -70,7 +78,35 @@ public class Balances extends AppCompatActivity {
         });
 
 
+        textView2.addTextChangedListener(textWatcher);
 
+
+    }
+
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            checkFieldsForEmptyValues();
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    };
+
+    private  void checkFieldsForEmptyValues(){
+
+        if(textView2.getText().toString().equals("Fecha")){
+            btn_completo_balance.setEnabled(false);
+        }else{
+            btn_completo_balance.setEnabled(true);
+        }
 
     }
 
@@ -173,9 +209,21 @@ public class Balances extends AppCompatActivity {
 
     public void init() {
 
+
+
+
+
+
         TableLayout stk = (TableLayout) findViewById(R.id.table_balances);
         TableRow tbrow0 = new TableRow(this);
         TableRow blank = new TableRow(this);
+
+        int count = stk.getChildCount();
+        for (int i = 0; i < count; i++) {
+            View child = stk.getChildAt(i);
+            if (child instanceof TableRow) ((ViewGroup) child).removeAllViews();
+        }
+
         tbrow0.setBackgroundColor(Color.parseColor("#2D572C"));
 
 

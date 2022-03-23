@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mcf">
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +17,7 @@
         android:theme="@style/Theme.McF">
 
         <activity
-            android:name=".Balances"
+            android:name=".Loggin"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,12 +28,12 @@
         </activity>
 
 
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".Balances"></activity>
         <activity android:name=".MarcarPedido"></activity>
         <activity android:name=".OpcionesAdmin"></activity>
         <activity android:name=".OpcionesUser"></activity>
 
-        <activity android:name=".Loggin"></activity>
+        <activity android:name=".MainActivity"></activity>
 
         <activity android:name=".mostrarClientes"></activity>
 

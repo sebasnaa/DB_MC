@@ -7,69 +7,88 @@
 
     <TextView
         android:id="@+id/fieldTelefono"
-        android:layout_width="205dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="212dp"
+        android:layout_width="138dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="260dp"
         android:background="@null"
         android:ems="10"
         android:gravity="center"
         android:inputType="none"
         android:text="Teléfono"
         android:textColor="#000000"
-        android:textSize="34sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/fieldDireccion"
-        android:layout_width="216dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="124dp"
+        android:layout_width="133dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="68dp"
         android:background="@null"
         android:ems="10"
         android:gravity="center"
         android:inputType="none"
         android:text="Dirección"
         android:textColor="#000000"
-        android:textSize="34sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/fieldNombre"
-        android:layout_width="205dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="128dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
         android:background="@null"
         android:ems="10"
         android:gravity="center"
         android:inputType="none"
         android:text="Nombre"
         android:textColor="#000000"
-        android:textSize="34sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/descuentoField"
+        android:layout_width="107dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="160dp"
+        android:background="@null"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="none"
+        android:text="Descuento"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_entrega_dinero"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/et_descuento_aplicado"
         android:layout_width="107dp"
         android:layout_height="44dp"
-        android:layout_marginEnd="652dp"
-        android:layout_marginBottom="184dp"
         android:ems="10"
         android:gravity="center"
         android:hint=""
         android:inputType="numberDecimal"
         android:textColor="#000000"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btn_confirmar_pedido"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/descuentoField"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/descuentoField"
+        app:layout_constraintTop_toBottomOf="@+id/descuentoField" />
 
     <Button
         android:id="@+id/buttonToMainPedido"
@@ -84,28 +103,29 @@
 
     <TextView
         android:id="@+id/nombreClientePedido"
-        android:layout_width="404dp"
-        android:layout_height="45dp"
+        android:layout_width="220dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="8dp"
         android:gravity="left"
         android:text=""
-        android:textSize="34sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/fieldNombre"
         app:layout_constraintTop_toTopOf="@+id/fieldNombre"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/direccionClientePedido"
-        android:layout_width="395dp"
-        android:layout_height="45dp"
+        android:layout_width="220dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="8dp"
         android:gravity="left"
         android:text=""
-        android:textSize="34sp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/fieldDireccion"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.032"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/fieldDireccion"
         app:layout_constraintTop_toTopOf="@+id/fieldDireccion"
         tools:ignore="MissingConstraints" />
@@ -122,66 +142,56 @@
 
     <TextView
         android:id="@+id/telefonoClientePedido"
-        android:layout_width="268dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="195dp"
+        android:layout_height="30dp"
         android:gravity="left"
-        android:textSize="34sp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/fieldTelefono"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.818"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fieldTelefono" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/fieldTelefono"
+        app:layout_constraintTop_toTopOf="@+id/fieldTelefono" />
 
     <Switch
         android:id="@+id/sw_glovo"
         android:layout_width="105dp"
-        android:layout_height="42dp"
-        android:layout_marginBottom="76dp"
+        android:layout_height="33dp"
+        android:layout_marginBottom="32dp"
         android:gravity="center"
         android:text="Glovo"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_confirmar_pedido"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintHorizontal_bias="0.039"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/et_cambio_calculado"
-        android:layout_width="237dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:gravity="center"
-        android:inputType="none"
-        app:layout_constraintEnd_toEndOf="@+id/et_cambio"
-        app:layout_constraintStart_toStartOf="@+id/et_cambio"
-        app:layout_constraintTop_toBottomOf="@+id/et_cambio" />
 
     <EditText
         android:id="@+id/importeField"
         style="@style/Widget.AppCompat.AutoCompleteTextView"
         android:layout_width="107dp"
         android:layout_height="36dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="200dp"
         android:background="@null"
         android:ems="10"
         android:gravity="center"
         android:inputType="none"
         android:text="Importe"
-        app:layout_constraintBottom_toTopOf="@+id/et_importe_pedido"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.18"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="106dp"
-        android:layout_height="93dp"
-        android:layout_marginBottom="184dp"
+        android:layout_width="116dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="244dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonToMainPedido"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.016"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fieldTelefono">
 
         <RadioButton
             android:id="@+id/radio_btn_tarjeta"
@@ -202,9 +212,6 @@
         android:id="@+id/et_importe_pedido"
         android:layout_width="107dp"
         android:layout_height="44dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="184dp"
         android:alpha="1"
         android:ems="10"
         android:gravity="center"
@@ -212,47 +219,47 @@
         android:inputType="numberDecimal"
         android:textColor="#000000"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btn_confirmar_pedido"
-        app:layout_constraintEnd_toStartOf="@+id/et_entrega_dinero"
-        app:layout_constraintHorizontal_bias="0.557"
-        app:layout_constraintStart_toEndOf="@+id/radioGroup" />
+        app:layout_constraintEnd_toEndOf="@+id/importeField"
+        app:layout_constraintStart_toStartOf="@+id/importeField"
+        app:layout_constraintTop_toBottomOf="@+id/importeField" />
 
     <EditText
         android:id="@+id/et_entrega_dinero"
         android:layout_width="107dp"
         android:layout_height="44dp"
-        android:layout_marginEnd="816dp"
-        android:layout_marginBottom="184dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
         android:gravity="center"
         android:hint=""
         android:inputType="numberDecimal"
         android:textColor="#000000"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btn_confirmar_pedido"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/entregaField"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/entregaField"
+        app:layout_constraintTop_toBottomOf="@+id/entregaField" />
 
     <EditText
         android:id="@+id/entregaField"
         android:layout_width="107dp"
         android:layout_height="36dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="200dp"
         android:background="@null"
         android:ems="10"
         android:gravity="center"
         android:inputType="none"
         android:text="Entrega"
-        app:layout_constraintBottom_toTopOf="@+id/et_entrega_dinero"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toEndOf="@+id/importeField" />
+        app:layout_constraintHorizontal_bias="0.381"
+        app:layout_constraintStart_toEndOf="@+id/importeField"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Switch
         android:id="@+id/sw_pagado"
-        android:layout_width="105dp"
-        android:layout_height="42dp"
-        android:layout_marginEnd="940dp"
-        android:layout_marginBottom="76dp"
+        android:layout_width="118dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="164dp"
+        android:layout_marginBottom="28dp"
         android:gravity="center"
         android:text="Pagado"
         android:textSize="16sp"
@@ -260,29 +267,10 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/descuentoField"
-        android:layout_width="107dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginBottom="20dp"
-        android:background="@null"
-        android:ems="10"
-        android:gravity="center"
-        android:inputType="none"
-        android:text="Descuento"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/et_descuento_aplicado"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.013"
-        app:layout_constraintStart_toEndOf="@+id/entregaField"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
         android:id="@+id/et_cambio"
         android:layout_width="107dp"
         android:layout_height="36dp"
-        android:layout_marginTop="292dp"
+        android:layout_marginTop="312dp"
         android:background="@null"
         android:ems="10"
         android:gravity="center"
@@ -291,21 +279,33 @@
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.682"
+        app:layout_constraintHorizontal_bias="0.888"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
+    <EditText
+        android:id="@+id/et_cambio_calculado"
+        android:layout_width="107dp"
+        android:layout_height="44dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="none"
+        app:layout_constraintEnd_toEndOf="@+id/et_cambio"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/et_cambio"
+        app:layout_constraintTop_toBottomOf="@+id/et_cambio" />
+
     <Switch
         android:id="@+id/sw_descuento"
-        android:layout_width="164dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginBottom="72dp"
+        android:layout_width="135dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
         android:gravity="center"
         android:text="Descuento"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_confirmar_pedido"
-        app:layout_constraintStart_toEndOf="@+id/sw_pagado" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
