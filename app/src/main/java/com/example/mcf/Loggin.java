@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Path;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -17,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.telephony.TelephonyManager;
 
@@ -28,6 +30,7 @@ public class Loggin extends AppCompatActivity {
     private EditText usernameEditText;
     private EditText passwordEditText;
     private Button loginButton;
+    private ImageView pegon;
 
 
     @Override
@@ -39,7 +42,9 @@ public class Loggin extends AppCompatActivity {
         passwordEditText = findViewById(R.id.activity_main_passwordEditText);
         loginButton = findViewById(R.id.activity_main_loginButton);
 
-    String id = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+        pegon = findViewById(R.id.gifInicio);
+
+        String id = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
 
 // sebas 6492b67f86e8ef3a
 
@@ -47,6 +52,9 @@ public class Loggin extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
                 if (usernameEditText.getText().length() > 0 && passwordEditText.getText().length() > 0) {
                     String toastMessage = "Usuario: " + usernameEditText.getText().toString() + ", Contraseña: " + passwordEditText.getText().toString();
                     Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
@@ -56,7 +64,7 @@ public class Loggin extends AppCompatActivity {
 
     //usernameEditText.setText(id);/
 
-                    if(usernameEditText.getText().toString().trim().equals("a") && passwordEditText.getText().toString().trim().equals("a")){
+                    if(usernameEditText.getText().toString().trim().equals("a") && passwordEditText.getText().toString().trim().equals("a") && id.equals("6492b67f86e8ef3a")){
 
                         setSuperUserStatus(1);
 
@@ -66,7 +74,7 @@ public class Loggin extends AppCompatActivity {
                         //intent.putExtra("superUserStatus",true);
                         startActivity(intent);
 
-                    }else if(usernameEditText.getText().toString().trim().equals("j") && passwordEditText.getText().toString().trim().equals("j")){
+                    }else if(usernameEditText.getText().toString().trim().equals("j") && passwordEditText.getText().toString().trim().equals("j") && id.equals("6492b67f86e8ef3a")){
                         Toast.makeText(getApplicationContext(), "Bunny logged", Toast.LENGTH_SHORT).show();
                         setSuperUserStatus(404);
                         credencialesUsuario = false;
@@ -76,19 +84,32 @@ public class Loggin extends AppCompatActivity {
 
                     }
 
+                    if(!id.equals("6492b67f86e8ef3a")){
+                        pegon.setVisibility(View.VISIBLE);
+                        Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
 
+                        new CountDownTimer(5000,1000){
 
+                            @Override
+                            public void onTick(long millisUntilFinished) {
+
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                pegon.setVisibility(View.INVISIBLE);
+
+                            }
+                        }.start();
+                    }
 
                 } else {
                     String toastMessage = "Usuario o contraseña vacios";
                     Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
-
-
-
-
 
 
     }

@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                         String dir = et_direccion.getText().toString();
                         int tel = Integer.parseInt(et_telefono.getText().toString());
                         if(Integer.toString(tel).length() < 9 && Integer.toString(tel).length() > 0){
-                            mensajeError+=", Telefono Incorrecto";
+                            mensajeError+=", Teléfono Incorrecto";
                         }else{
 
                             modeloCliente= new ModeloCliente(-1,nombre,dir,tel);
@@ -143,13 +143,13 @@ public class MainActivity extends AppCompatActivity {
                 modeloCliente = dataBaseOperation.getCliente(telefono);
                 if(modeloCliente != null){
 
-                    Toast.makeText(MainActivity.this,modeloCliente.toString() ,Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MainActivity.this,modeloCliente.toString() ,Toast.LENGTH_SHORT).show();
                     et_nombre.setText(modeloCliente.getNombre());
                     et_direccion.setText(modeloCliente.getDireccion());
                     String aux = ""+modeloCliente.getTelefono();
                     et_telefono.setText(aux);
                 }else if(modeloCliente == null){
-                    Toast.makeText(MainActivity.this,"No existe, comrpuebe telefono" ,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"No existe, compruebe teléfono" ,Toast.LENGTH_SHORT).show();
                 }
 
 

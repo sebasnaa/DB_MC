@@ -94,11 +94,11 @@
         android:id="@+id/buttonToMainPedido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="40dp"
         android:text="Cancelar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_confirmar_pedido"
-        app:layout_constraintHorizontal_bias="0.82"
+        app:layout_constraintHorizontal_bias="0.825"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -154,15 +154,15 @@
 
     <Switch
         android:id="@+id/sw_glovo"
-        android:layout_width="105dp"
-        android:layout_height="33dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="118dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="24dp"
         android:gravity="center"
         android:text="Glovo"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_confirmar_pedido"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.039"
+        app:layout_constraintHorizontal_bias="0.037"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -258,8 +258,8 @@
         android:id="@+id/sw_pagado"
         android:layout_width="118dp"
         android:layout_height="38dp"
-        android:layout_marginEnd="164dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginBottom="24dp"
         android:gravity="center"
         android:text="Pagado"
         android:textSize="16sp"
@@ -298,8 +298,8 @@
 
     <Switch
         android:id="@+id/sw_descuento"
-        android:layout_width="135dp"
-        android:layout_height="41dp"
+        android:layout_width="138dp"
+        android:layout_height="38dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="24dp"
         android:gravity="center"
@@ -307,5 +307,25 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_confirmar_pedido"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <android.support.constraint.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="left" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
 
 </android.support.constraint.ConstraintLayout>

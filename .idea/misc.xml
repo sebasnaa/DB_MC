@@ -8,7 +8,7 @@
         <entry key="..\:/Users/sebas/AndroidStudioProjects/McF/app/src/main/res/layout/activity_main.xml" value="0.2838283828382838" />
         <entry key="..\:/Users/sebas/AndroidStudioProjects/McF/app/src/main/res/layout/opciones_basicas.xml" value="0.25271739130434784" />
         <entry key="..\:/Users/sebas/AndroidStudioProjects/McF/app/src/main/res/layout/prueba.xml" value="0.33" />
-        <entry key="..\:/Users/sebas/AndroidStudioProjects/McF/app/src/main/res/layout/view_balance.xml" value="0.22" />
+        <entry key="..\:/Users/sebas/AndroidStudioProjects/McF/app/src/main/res/layout/view_balance.xml" value="0.33" />
         <entry key="..\:/Users/sebas/AndroidStudioProjects/McF/app/src/main/res/layout/view_loggin.xml" value="0.33" />
         <entry key="..\:/Users/sebas/AndroidStudioProjects/McF/app/src/main/res/layout/view_marcar_pedido.xml" value="0.5" />
         <entry key="..\:/Users/sebas/AndroidStudioProjects/McF/app/src/main/res/layout/view_mostrar_clientes.xml" value="0.2921875" />
@@ -16,6 +16,9 @@
         <entry key="..\:/Users/sebas/AndroidStudioProjects/McF/app/src/main/res/layout/view_opciones_admin.xml" value="0.33" />
         <entry key="..\:/Users/sebas/AndroidStudioProjects/McF/app/src/main/res/layout/view_opciones_user.xml" value="0.35144927536231885" />
         <entry key="..\:/Users/sebas/AndroidStudioProjects/McF/app/src/main/res/layout/viwe_loggin.xml" value="0.3292572463768116" />
+        <entry key="..\:/Users/sebas/AndroidStudioProjects/McF/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3828125" />
+        <entry key="..\:/Users/sebas/AndroidStudioProjects/McF/app/src/main/res/mipmap-anydpi-v26/ic_launcher_dos.xml" value="0.31302083333333336" />
+        <entry key="..\:/Users/sebas/AndroidStudioProjects/McF/app/src/main/res/mipmap-anydpi-v26/ic_launcher_dos_round.xml" value="0.31302083333333336" />
       </map>
     </option>
   </component>
@@ -24,5 +27,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.33" />
+      </ProjectState>
+    </option>
   </component>
 </project>
