@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
 
-    Button btn_agregar,btn_buscar,btn_eliminar,btn_print,btn_mostrar_clientes,btn_marcar_pedido,btn_home_user,btn_home_admin;
+    Button btn_agregar,btn_buscar,btn_eliminar,btn_mostrar_clientes,btn_marcar_pedido,btn_home_user,btn_home_admin;
     EditText et_nombre,et_direccion,et_telefono;
 
 
@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         btn_agregar = findViewById(R.id.btn_agregar);
         btn_buscar = findViewById(R.id.btn_buscar);
         btn_eliminar = findViewById(R.id.btn_eliminar);
-        btn_print = findViewById(R.id.btn_print);
         btn_home_user = findViewById(R.id.btn_home_user);
         btn_home_admin = findViewById(R.id.btn_home_admin);
         et_nombre = findViewById(R.id.NombreCliente);
@@ -52,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         if(!superUserStatus){
             //Toast.makeText(getApplicationContext(), "Junior", Toast.LENGTH_SHORT).show();
             btn_eliminar.setVisibility(View.GONE);
-            btn_print.setVisibility(View.GONE);
             btn_home_admin.setVisibility(View.GONE);
         }
 
@@ -174,22 +172,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        btn_print.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                /*Toast.makeText(MainActivity.this,"Has pulsado print" ,Toast.LENGTH_SHORT).show();
-
-                DataBaseOperation dataBaseOperation = new DataBaseOperation(MainActivity.this);
-                dataBaseOperation.eliminarTabla();*/
-            }
-
-
-
-
-        });
-
-
 
 
 

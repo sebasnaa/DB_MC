@@ -57,14 +57,15 @@ public class Loggin extends AppCompatActivity {
 
                 if (usernameEditText.getText().length() > 0 && passwordEditText.getText().length() > 0) {
                     String toastMessage = "Usuario: " + usernameEditText.getText().toString() + ", Contraseña: " + passwordEditText.getText().toString();
-                    Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
                     //Por comodidad no creo base de datos para los usuarios, comrpuebo los campos y asigno 1 si es admin en caso cotontrario algo diferente a 1
                     //mcadmin    admin2022     a a
                     //mcjunior   2022
 
     //usernameEditText.setText(id);/
 
-                    if(usernameEditText.getText().toString().trim().equals("a") && passwordEditText.getText().toString().trim().equals("a") && id.equals("6492b67f86e8ef3a")){
+                    //&& id.equals("6492b67f86e8ef3a")
+
+                    if(usernameEditText.getText().toString().trim().equals("a") && passwordEditText.getText().toString().trim().equals("a") ){
 
                         setSuperUserStatus(1);
 
@@ -74,7 +75,7 @@ public class Loggin extends AppCompatActivity {
                         //intent.putExtra("superUserStatus",true);
                         startActivity(intent);
 
-                    }else if(usernameEditText.getText().toString().trim().equals("j") && passwordEditText.getText().toString().trim().equals("j") && id.equals("6492b67f86e8ef3a")){
+                    }else if(usernameEditText.getText().toString().trim().equals("j") && passwordEditText.getText().toString().trim().equals("j")){
                         Toast.makeText(getApplicationContext(), "Bunny logged", Toast.LENGTH_SHORT).show();
                         setSuperUserStatus(404);
                         credencialesUsuario = false;
@@ -84,24 +85,24 @@ public class Loggin extends AppCompatActivity {
 
                     }
 
-                    if(!id.equals("6492b67f86e8ef3a")){
-                        pegon.setVisibility(View.VISIBLE);
-                        Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
-
-                        new CountDownTimer(5000,1000){
-
-                            @Override
-                            public void onTick(long millisUntilFinished) {
-
-                            }
-
-                            @Override
-                            public void onFinish() {
-                                pegon.setVisibility(View.INVISIBLE);
-
-                            }
-                        }.start();
-                    }
+//                    if(!id.equals("6492b67f86e8ef3a")){
+//                        pegon.setVisibility(View.VISIBLE);
+//                        Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
+//
+//                        new CountDownTimer(5000,1000){
+//
+//                            @Override
+//                            public void onTick(long millisUntilFinished) {
+//
+//                            }
+//
+//                            @Override
+//                            public void onFinish() {
+//                                pegon.setVisibility(View.INVISIBLE);
+//
+//                            }
+//                        }.start();
+//                    }
 
                 } else {
                     String toastMessage = "Usuario o contraseña vacios";

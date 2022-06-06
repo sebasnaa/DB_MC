@@ -7,8 +7,13 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.icu.text.SimpleDateFormat;
+import android.os.Build;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.widget.Toast;
 
+import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
@@ -33,18 +38,29 @@ public class DataBaseOperation extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+//        String createTableStatement = "CREATE TABLE " + TABLA_CLIENTES + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+//                COLUMNA_NOMBRE_CLIENTE + " TEXT, " + COLUMNA_DIRECCION_CLIENTE + " TEXT, " + COLUMNA_TELEFONO_CLIENTE + " INT)";
+//
+//
+//        String createTablePedidos = "CREATE TABLE " + TABLA_PEDIDOS + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+//                COLUMNA_TELEFONO_CLIENTE + " INT, "  + COLUMNA_TIPO_PEDIDO + " TEXT, " + COLUMNA_PRECIO_PEDIDO + " REAL ," + COLUMNA_METODO_PAGO + " TEXT ," +
+//                COLUMNA_FECHA_PEDIDO + " DEFAULT CURRENT_TIMESTAMP)";
+//
+//        String createTableDescuentos = "CREATE TABLE " + TABLA_DESCUENTOS + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+//                COLUMNA_PRECIO_DESCUENTO + " REAL ," + COLUMNA_METODO_PAGO + " TEXT ," +
+//                COLUMNA_FECHA_PEDIDO + " DEFAULT CURRENT_TIMESTAMP)";
+
         String createTableStatement = "CREATE TABLE " + TABLA_CLIENTES + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMNA_NOMBRE_CLIENTE + " TEXT, " + COLUMNA_DIRECCION_CLIENTE + " TEXT, " + COLUMNA_TELEFONO_CLIENTE + " INT)";
 
 
         String createTablePedidos = "CREATE TABLE " + TABLA_PEDIDOS + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMNA_TELEFONO_CLIENTE + " INT, "  + COLUMNA_TIPO_PEDIDO + " TEXT, " + COLUMNA_PRECIO_PEDIDO + " REAL ," + COLUMNA_METODO_PAGO + " TEXT ," +
-                COLUMNA_FECHA_PEDIDO + " DEFAULT CURRENT_TIMESTAMP)";
+                COLUMNA_FECHA_PEDIDO + " DATETIME NOT NULL DEFAULT (datetime(CURRENT_TIMESTAMP, 'localtime')) )";
 
         String createTableDescuentos = "CREATE TABLE " + TABLA_DESCUENTOS + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMNA_PRECIO_DESCUENTO + " REAL ," + COLUMNA_METODO_PAGO + " TEXT ," +
-                COLUMNA_FECHA_PEDIDO + " DEFAULT CURRENT_TIMESTAMP)";
-
+                COLUMNA_FECHA_PEDIDO + " DATETIME NOT NULL DEFAULT (datetime(CURRENT_TIMESTAMP, 'localtime')) )";
 
         db.execSQL(createTableStatement);
         db.execSQL(createTablePedidos);
@@ -55,7 +71,7 @@ public class DataBaseOperation extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-/*        onCreate(db);*/
+//        onCreate(db);
 
     }
 
@@ -87,6 +103,7 @@ public class DataBaseOperation extends SQLiteOpenHelper {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public boolean agregarPedido(ModeloPedido modeloPedido){
         SQLiteDatabase db = this.getReadableDatabase();
         ContentValues contenido = new ContentValues();
@@ -96,6 +113,8 @@ public class DataBaseOperation extends SQLiteOpenHelper {
         contenido.put(COLUMNA_TIPO_PEDIDO,modeloPedido.getTipo());
         contenido.put(COLUMNA_PRECIO_PEDIDO,modeloPedido.getPrecio());
         contenido.put(COLUMNA_METODO_PAGO,modeloPedido.getMetodoPago());
+
+
 
         long insert = db.insert(TABLA_PEDIDOS, null, contenido);
         if(insert == -1){

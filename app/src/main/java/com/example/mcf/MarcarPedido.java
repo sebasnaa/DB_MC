@@ -129,7 +129,7 @@ public class MarcarPedido extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                int tele = Integer.parseInt(et_telefono.getText().toString());
+                int telefono = Integer.parseInt(et_telefono.getText().toString());
                 String tipo = getTipoPedido();
                 double importe = Double.parseDouble(et_importe_pedido.getText().toString());
                 String metodoPago = getMetodoPago();
@@ -139,7 +139,7 @@ public class MarcarPedido extends AppCompatActivity {
                     metodoPago = "App";
                 }
 
-                ModeloPedido moPedido = new ModeloPedido(-1,tele,tipo,importe,metodoPago,"");
+                ModeloPedido moPedido = new ModeloPedido(-1,telefono,tipo,importe,metodoPago,"");
 
 
                 String tipoPedido = tipo.equals("G") ? "Glovo" : "Restaurante";

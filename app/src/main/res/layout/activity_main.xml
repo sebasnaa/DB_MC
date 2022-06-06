@@ -76,27 +76,16 @@
         app:layout_constraintStart_toEndOf="@+id/btn_agregar"
         app:layout_constraintTop_toBottomOf="@+id/TelefonoCliente" />
 
+
     <Button
         android:id="@+id/btn_eliminar"
         android:layout_width="140dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="28dp"
         android:text="RC(REMOVE)"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_print"
-        app:layout_constraintHorizontal_bias="0.161"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-
-    <Button
-        android:id="@+id/btn_print"
-        android:layout_width="140dp"
-        android:layout_height="70dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
-        android:text="PP"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btn_marcar_pedido"
