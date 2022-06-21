@@ -186,6 +186,10 @@ public class Balances extends AppCompatActivity {
         return db.getBalanceCompletoMod(textView2.getText().toString(),9);
     }
 
+    private double[] getDatosDescuentosApp(){
+
+        return db.getBalanceCompletoMod(textView2.getText().toString(),10);
+    }
 
 
     private void showDatePickerDialog() {
@@ -289,7 +293,7 @@ public class Balances extends AppCompatActivity {
 
         //Tarjeta
         t1v = new TextView(this);
-        t1v.setText(""+(int)datosEfectivoRestaurante[0]);
+        t1v.setText(""+(int)datosTarjetaRestaurante[0]);
         t1v.setGravity(Gravity.CENTER);
         t1v.setPadding(0,0,25,0);
         RNV.addView(t1v);
@@ -322,6 +326,9 @@ public class Balances extends AppCompatActivity {
         t1v.setGravity(Gravity.CENTER);
         t1v.setPadding(0,0,25,0);
         RI.addView(t1v);
+
+
+
         //Efectivo importe
         t1v = new TextView(this);
         t1v.setText(""+datosEfectivoRestaurante[1] + " €");
@@ -352,6 +359,7 @@ public class Balances extends AppCompatActivity {
         double datosAppGlovo[] = getDatosGlovoApp();
         double datosDescuentosEfectivo[] = getDatosDescuentosEfectivo();
         double datosDescuentosTarjeta[] = getDatosDescuentosTarjeta();
+        double datosDescuentoApp[] = getDatosDescuentosApp();
 
         RNV = new TableRow(this);
 
@@ -418,8 +426,10 @@ public class Balances extends AppCompatActivity {
         blank.addView(t1v);
         stk.addView(blank);
 
-        //Descuentos
 
+        //
+        //Descuentos
+        //
         RNV = new TableRow(this);
 
 
@@ -440,6 +450,14 @@ public class Balances extends AppCompatActivity {
         t1v.setGravity(Gravity.CENTER);
         t1v.setPadding(0,0,25,0);
         RNV.addView(t1v);
+        //App
+        t1v = new TextView(this);
+        t1v.setText(""+(int)datosDescuentoApp[0]);
+        t1v.setGravity(Gravity.CENTER);
+        t1v.setPadding(0,0,25,0);
+        RNV.addView(t1v);
+
+
 
         stk.addView(RNV);
 
@@ -459,6 +477,12 @@ public class Balances extends AppCompatActivity {
         //Efectivo importe
         t1v = new TextView(this);
         t1v.setText(datosDescuentosEfectivo[1]+" €");
+        t1v.setGravity(Gravity.CENTER);
+        t1v.setPadding(0,0,25,0);
+        RI.addView(t1v);
+        //App importe
+        t1v = new TextView(this);
+        t1v.setText(datosDescuentoApp[1]+" €");
         t1v.setGravity(Gravity.CENTER);
         t1v.setPadding(0,0,25,0);
         RI.addView(t1v);

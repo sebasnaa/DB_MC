@@ -361,7 +361,7 @@ public class DataBaseOperation extends SQLiteOpenHelper {
                 break;
 
             case 4:
-                //Restaurante Efectivo
+                //Restaurante Tarjeta
                 parametrosMod[0] = parametros[0];
                 parametrosMod[1] = parametros[1];
                 parametrosMod[2] = "R";
@@ -428,10 +428,22 @@ public class DataBaseOperation extends SQLiteOpenHelper {
 
 
                 break;
+
+            case 10:
+                //Descuentos App
+                parametrosDescuentos[0] = parametros[0];
+                parametrosDescuentos[1] = parametros[1];
+                parametrosDescuentos[2] = "App";
+
+                c = db.rawQuery("SELECT SUM("+COLUMNA_PRECIO_DESCUENTO+") FROM "+TABLA_DESCUENTOS +" WHERE ("+COLUMNA_FECHA_PEDIDO+" > ? " + " AND " + COLUMNA_FECHA_PEDIDO + " < ? AND "+ COLUMNA_METODO_PAGO + "=?)",parametrosDescuentos);
+                cursor= db.rawQuery("SELECT COUNT (*) FROM " + TABLA_DESCUENTOS + " WHERE("+COLUMNA_FECHA_PEDIDO+" > ? " + " AND " + COLUMNA_FECHA_PEDIDO + " < ? AND "+ COLUMNA_METODO_PAGO + "=?)"   ,parametrosDescuentos);
+
+
+                break;
         }
 
         if(c.moveToFirst())
-            totalVentas = c.getInt(0);
+            totalVentas = c.getDouble(0);
         else
             totalVentas = -1;
         c.close();

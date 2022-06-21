@@ -2,15 +2,19 @@ package com.example.mcf;
 
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.ViewModelStoreOwner;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -135,10 +139,6 @@ public class MarcarPedido extends AppCompatActivity {
                 String metodoPago = getMetodoPago();
 
 
-                if(sw_pagado.isChecked()){
-                    metodoPago = "App";
-                }
-
                 ModeloPedido moPedido = new ModeloPedido(-1,telefono,tipo,importe,metodoPago,"");
 
 
@@ -157,6 +157,7 @@ public class MarcarPedido extends AppCompatActivity {
                     }
                 });
                 builder.setPositiveButton(getResources().getString(R.string.confirmar), new DialogInterface.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
                     public void onClick(DialogInterface dialog, int which) {
 
 
@@ -200,6 +201,28 @@ public class MarcarPedido extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    public void onBackPressed() {
+        closeKeyBoard();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void closeKeyBoard(){
+        View view = this.getCurrentFocus();
+
+        if (view != null) {
+
+            InputMethodManager manager
+                    = (InputMethodManager)
+                    getSystemService(
+                            Context.INPUT_METHOD_SERVICE);
+            manager
+                    .hideSoftInputFromWindow(
+                            view.getWindowToken(), 0);
+        }
+    }
+
 
     public ModeloCliente setDatosPedidoCliente(){
         ModeloCliente cliente = new ModeloCliente();
@@ -216,9 +239,15 @@ public class MarcarPedido extends AppCompatActivity {
 
     private String getMetodoPago(){
 
+
+        if(sw_pagado.isChecked()){
+            return "App";
+        }
+
         if(r_btn_tarjeta.isChecked()){
             return r_btn_tarjeta.getText().toString();
         }
+
 
 
         return r_btn_efectivo.getText().toString();

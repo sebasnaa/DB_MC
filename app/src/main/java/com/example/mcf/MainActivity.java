@@ -1,11 +1,15 @@
 package com.example.mcf;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -162,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
                 DataBaseOperation dataBaseOperation = new DataBaseOperation(MainActivity.this);
                 String telefono = et_telefono.getText().toString();
                 boolean salida = dataBaseOperation.eliminarCliente(telefono);
-                Toast.makeText(MainActivity.this,""+salida ,Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Cliente eliminado" ,Toast.LENGTH_SHORT).show();
                 if(salida){
                     limpiar();
                 }
@@ -183,18 +187,41 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
     }
 
 
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBackPressed() {
         //muere el boton back
-        super.onBackPressed();
-
+        closeKeyBoard();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void closeKeyBoard(){
+        // this will give us the view
+        // which is currently focus
+        // in this layout
+        View view = this.getCurrentFocus();
 
+        // if nothing is currently
+        // focus then this will protect
+        // the app from crash
+        if (view != null) {
+
+            // now assign the system
+            // service to InputMethodManager
+            InputMethodManager manager
+                    = (InputMethodManager)
+                    getSystemService(
+                            Context.INPUT_METHOD_SERVICE);
+            manager
+                    .hideSoftInputFromWindow(
+                            view.getWindowToken(), 0);
+        }
+    }
 
     public void limpiar(){
         et_nombre.setText("");
@@ -220,14 +247,25 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private  void checkFieldsForEmptyValues(){
+        DataBaseOperation dataBaseOperation = new DataBaseOperation(MainActivity.this);
         Button btn = (Button) findViewById(R.id.btn_marcar_pedido);
 
         String nombre = et_nombre.getText().toString();
         String dirr = et_direccion.getText().toString();
         String telefono = et_telefono.getText().toString();
 
+
+
+
+
+
         if (nombre.length() > 0 && dirr.length() > 0 && telefono.length() > 0) {
-            btn.setEnabled(true);
+            ModeloCliente modeloCliente = dataBaseOperation.getCliente(telefono);
+            if(modeloCliente != null){
+                btn.setEnabled(true);
+            }else{
+                btn.setEnabled(false);
+            }
         } else {
             btn.setEnabled(false);
         }
